@@ -1,0 +1,35 @@
+static void swap(int a[],int i,int j)
+    {
+        if(i==j)
+        return;
+        a[i]=a[i]^a[j];a[j]=a[i]^a[j];a[i]=a[i]^a[j];
+    }
+    static void quickSort(int a[], int low, int high)
+    {
+        // code here
+        if(low<high)
+        {
+        int idx=partition(a,low,high);
+        quickSort(a,low,idx-1);
+        quickSort(a,idx+1,high);
+        }
+    }
+    // taking first index as pivot element
+    static int partition(int a[], int low, int high)
+    {
+        int pivot=a[low];
+        int isGreater=low;
+        int isSmaller=high;
+        while(isSmaller>isGreater)
+        {
+            while(isGreater<=high&&a[isGreater]<=pivot)
+                isGreater++;
+            while(isSmaller>=low&&a[isSmaller]>pivot)
+                isSmaller--;
+            if(isSmaller>isGreater)
+                swap(a,isGreater,isSmaller);
+        }
+         swap(a,low,isSmaller);
+        return isSmaller;
+        // your code here
+    } 
